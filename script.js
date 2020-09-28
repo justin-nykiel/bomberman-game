@@ -6,22 +6,86 @@ canvas.height = 550
 const keys = []
 
 
-const player = {
-    x: 0,
-    y: 50,
-    width: 32,
-    height: 48,
-    frameX: 0,
-    frameY: 0,
-    speed: 9,
-    moving: false
+
+class Player {
+    constructor(x = 0, y = 50, width = 32, height = 48, frameX = 0, frameY = 0, speed = 9, moving = false) {
+        this.x = x
+        this.y = y
+        this.width = width
+        this.height = height
+        this.frameX = frameX
+        this.frameY = frameY
+        this.speed = speed
+        this.moving = moving
+    }
+    drawSprite(img, sX, sY, sW, sH, dX, dY, dW, dH, context) {
+        context.drawImage(img, sX, sY, sW, sH, dX, dY, dW, dH)
+    }
+    handlePlayerFrame(){
+        if (this.frameX < 3 && this.moving === true){
+            this.frameX++
+        } else {
+            this.frameX = 0
+        }
+    }
+    movePlayer(){
+        if (keys[38] && goUp){
+            if(this.y > 0){
+                this.y -= this.speed
+                this.frameY = 3
+                goDown = true
+                goLeft = true
+                goRight = true
+            }
+        }
+        if (keys[40] && goDown){
+            if(this.y < 502){
+                this.y += this.speed
+                this.frameY = 0
+                goUp = true
+                goLeft = true
+                goRight = true
+            }
+        }
+        if (keys[39] && goRight){
+            if(this.x <= 768 + 50){
+                this.x += this.speed
+                this.frameY = 2
+                goDown = true
+                goLeft = true
+                goUp = true
+            }
+        }
+        if (keys[37] && goLeft){
+            if(this.x >= 0){
+                this.x -= this.speed
+                this.frameY = 1
+                goDown = true
+                goUp = true
+                goRight = true
+            }
+        }
+    
 }
+}
+//create a class for the bricks
+// class Brick {
+//     constructor(x,y,width = 50, height = 50, status = true) {
+//         this.x = x
+//         this.y = y
+//         this.width = width
+//         this.height = height
+//         this.status = status
+//     }
+//     draw(context){
+//         context.fillRect(this.x, this.y, this.width, this.height)
+//     }
+
+// }
 const bomberman = new Image()
 bomberman.src = 'ironman.png'
 
-function drawSprite(img, sX, sY, sW, sH, dX, dY, dW, dH) {
-    context.drawImage(img, sX, sY, sW, sH, dX, dY, dW, dH)
-}
+
 
 //creating bricks on  canvas
 var brickRowCount = 5;
@@ -153,52 +217,8 @@ window.addEventListener('keyup', function(e){
     player.moving = false
 })
 
-function movePlayer(){
-        if (keys[38] && goUp){
-            if(player.y > 0){
-                player.y -= player.speed
-                player.frameY = 3
-                goDown = true
-                goLeft = true
-                goRight = true
-            }
-        }
-        if (keys[40] && goDown){
-            if(player.y < 502){
-                player.y += player.speed
-                player.frameY = 0
-                goUp = true
-                goLeft = true
-                goRight = true
-            }
-        }
-        if (keys[39] && goRight){
-            if(player.x <= 768 + 50){
-                player.x += player.speed
-                player.frameY = 2
-                goDown = true
-                goLeft = true
-                goUp = true
-            }
-        }
-        if (keys[37] && goLeft){
-            if(player.x >= 0){
-                player.x -= player.speed
-                player.frameY = 1
-                goDown = true
-                goUp = true
-                goRight = true
-            }
-        }
-    
-}
-function handlePlayerFrame(){
-    if (player.frameX < 3 && player.moving === true){
-        player.frameX++
-    } else {
-        player.frameX = 0
-    }
-}
+
+
 
 let fps, fpsInterval, startTime, now, then, elapsed
 function startAnimating(fps){
@@ -207,6 +227,7 @@ function startAnimating(fps){
     startTime = then
     animate()
 }
+let player = new Player
 function animate(){
     requestAnimationFrame(animate)
     now = Date.now()
@@ -216,10 +237,10 @@ function animate(){
         context.clearRect(0,0, canvas.width, canvas.height)
         drawBreakableBricks()
         drawBricks()
-        drawSprite(bomberman, player.width * player.frameX, player.height * player.frameY, player.width, player.height, player.x, player.y, player.width, player.height)
+        player.drawSprite(bomberman, player.width * player.frameX, player.height * player.frameY, player.width, player.height, player.x, player.y, player.width, player.height, context)
         collisionDetection()
-        movePlayer()
-        handlePlayerFrame()
+        player.movePlayer()
+        player.handlePlayerFrame()
     }
     
 }
