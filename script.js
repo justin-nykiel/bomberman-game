@@ -2,8 +2,7 @@ const canvas = document.getElementById('canvas1')
 const context = canvas.getContext('2d')
 canvas.width = 850
 canvas.height = 550
-
-const keys = []
+let keys = []
 
 
 
@@ -69,19 +68,19 @@ class Player {
 }
 }
 //create a class for the bricks
-// class Brick {
-//     constructor(x,y,width = 50, height = 50, status = true) {
-//         this.x = x
-//         this.y = y
-//         this.width = width
-//         this.height = height
-//         this.status = status
-//     }
-//     draw(context){
-//         context.fillRect(this.x, this.y, this.width, this.height)
-//     }
+class Brick {
+    constructor(x,y,width = 50, height = 50, status = true) {
+        this.x = x
+        this.y = y
+        this.width = width
+        this.height = height
+        this.status = status
+    }
+    draw(context){
+        
+    }
 
-// }
+}
 const bomberman = new Image()
 bomberman.src = 'ironman.png'
 
@@ -206,16 +205,18 @@ function collisionDetection() {
 }
 }
 
-
-window.addEventListener('keydown', function(e){
-    keys[e.keyCode] = true
-    player.moving = true
-
+window.addEventListener('DOMContentLoaded', ()=>{
+    window.addEventListener('keydown', function(e){
+        keys[e.keyCode] = true
+        player.moving = true
+    
+    })
+    window.addEventListener('keyup', function(e){
+        delete keys[e.keyCode]
+        player.moving = false
+    })
 })
-window.addEventListener('keyup', function(e){
-    delete keys[e.keyCode]
-    player.moving = false
-})
+
 
 
 
@@ -237,10 +238,10 @@ function animate(){
         context.clearRect(0,0, canvas.width, canvas.height)
         drawBreakableBricks()
         drawBricks()
-        player.drawSprite(bomberman, player.width * player.frameX, player.height * player.frameY, player.width, player.height, player.x, player.y, player.width, player.height, context)
-        collisionDetection()
         player.movePlayer()
         player.handlePlayerFrame()
+        player.drawSprite(bomberman, player.width * player.frameX, player.height * player.frameY, player.width, player.height, player.x, player.y, player.width, player.height, context)
+        collisionDetection()
     }
     
 }
