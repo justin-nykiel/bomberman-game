@@ -27,6 +27,21 @@ class Player {
             this.frameX = 0
         }
     }
+    moveDown(){
+        this.y += this.speed
+    }
+    moveUp(){
+        this.y -= this.speed
+    }
+    moveLeft(){
+        this.x -= this.speed
+    }
+    moveRight(){
+        this.x += this.speed
+    }
+    draw(context){
+
+    }
     movePlayer(){
         if (keys[38] && goUp){
             if(this.y > 0){
@@ -37,15 +52,15 @@ class Player {
                 goRight = true
             }
         }
-        if (keys[40] && goDown){
-            if(this.y < 502){
-                this.y += this.speed
-                this.frameY = 0
-                goUp = true
-                goLeft = true
-                goRight = true
-            }
-        }
+        // if (keys[40] && goDown){
+        //     if(this.y < 502){
+        //         this.y += this.speed
+        //         this.frameY = 0
+        //         goUp = true
+        //         goLeft = true
+        //         goRight = true
+        //     }
+        // }
         if (keys[39] && goRight){
             if(this.x <= 768 + 50){
                 this.x += this.speed
@@ -66,6 +81,42 @@ class Player {
         }
     
 }
+}
+class Controls {
+    constructor(player){
+        document.addEventListener('keydown',()=>{
+            switch(e.keys){
+                case 37:
+                    player.moveLeft()
+                    break
+                case 39:
+                    player.moveRight()
+                    break
+                case 40:
+                    player.moveDown()
+                    break
+                case 38:
+                    player.moveUp()
+                    break
+            }
+        })
+        document.addEventListener('keydown',()=>{
+            switch(e.keys){
+                case 37:
+                    player.moveLeft()
+                    break
+                case 39:
+                    player.moveRight()
+                    break
+                case 40:
+                    player.moveDown()
+                    break
+                case 38:
+                    player.moveUp()
+                    break
+            }
+        })
+    }
 }
 //create a class for the bricks
 class Brick {
@@ -229,6 +280,7 @@ function startAnimating(fps){
     animate()
 }
 let player = new Player
+let controls = new Controls
 function animate(){
     requestAnimationFrame(animate)
     now = Date.now()
