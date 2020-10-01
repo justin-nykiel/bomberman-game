@@ -1,4 +1,23 @@
-function collisionDetection() {
+export function collisionDetection(player, gameObject) {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     //loops through the array of brick objects and checks for collisions for each corner of the sprite
     for (var c = 0; c < 17; c++) {
         for (var r = 0; r < 11; r++) {

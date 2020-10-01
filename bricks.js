@@ -1,13 +1,14 @@
 export default class Brick {
-    constructor(x,y,width = 50, height = 50, status = true, stoneBrick) {
+    constructor(game, x,y,width = 50, height = 50, status = true) {
         this.x = x
         this.y = y
         this.width = 50
         this.height = 50
         this.status = status
         this.image = document.getElementById('stoneBrick')
+        // from https://opengameart.org/content/32x32-blocks-and-more Creator: EntropyPhi
     }
-    update(context){
+    updateDrawing(context){
         context.drawImage(
             this.image,
             this.x,

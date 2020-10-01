@@ -4,6 +4,7 @@ import Brick from '/bricks.js'
 import Game from '/game.js'
 
 
+
 const canvas = document.getElementById('canvas1')
 const context = canvas.getContext('2d')
 const GAME_WIDTH = 850
@@ -13,11 +14,11 @@ canvas.width = 850
 canvas.height = 550
 
 //image used for playable character
-const bomberman = new Image()
-bomberman.src = 'ironman.png'
-//image used for 
-const stoneBrick = new Image()
-stoneBrick.src = 'stoneBlock.png'
+// const bomberman = new Image()
+// bomberman.src = 'ironman.png'
+// //image used for 
+// const stoneBrick = new Image()
+// stoneBrick.src = 'stoneBlock.png'
 
 
 
@@ -37,9 +38,10 @@ function startAnimating(fps){
     startTime = then
     animate()
 }
-let game = new Game(GAME_WIDTH, GAME_HEIGHT)
+let game = new Game(GAME_WIDTH, GAME_HEIGHT, context)
 game.start()
 //Loop of the game
+
 function animate(){
     requestAnimationFrame(animate)
     now = Date.now()
@@ -47,8 +49,16 @@ function animate(){
     if(elapsed > fpsInterval){
         then = now - (elapsed % fpsInterval)
         context.clearRect(0,0, canvas.width, canvas.height)
-       // drawBreakableBricks()
-       // drawBricks()
+       
+        //counts how many frames have passed since bomb placed, gets rid of bomb after 45 frames
+       if(game.bombPlaced == true && game.frames >= 0){
+           console.log(game.frames)
+            game.frames++
+            if(game.frames === 45){
+                game.bombPlaced = false
+                game.frames = 0
+            }
+       }
         game.update(context)
         game.draw(context)
         //collisionDetection()
