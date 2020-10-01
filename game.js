@@ -12,6 +12,7 @@ export default class Game {
         this.context = context
         this.bombPlaced = false
         this.frames = 0
+        this.explosion = false
     }
     start(){
         this.player = new Player(this)
@@ -34,12 +35,17 @@ export default class Game {
     update(){
         this.player.updateMovement()
         this.player.handlePlayerFrame()
+        if(this.explosion){
+            this.bomb.handleExplosionFrame()
+        }
     }
     draw(context){
         //this.player.drawSprite(bomberman, this.player.width * this.player.frameX, this.player.height * this.player.frameY, this.player.width, this.player.height, this.player.x, this.player.y, this.player.width, this.player.height, context)
         this.gameObjects.forEach(objects => objects.updateDrawing(context))
         if(this.bombPlaced){
             this.bomb.updateDrawing(context)
+        } else if(this.explosion){
+            this.bomb.explode(context)
         }
     }
 }

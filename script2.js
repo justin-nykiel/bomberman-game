@@ -51,11 +51,14 @@ function animate(){
         context.clearRect(0,0, canvas.width, canvas.height)
        
         //counts how many frames have passed since bomb placed, gets rid of bomb after 45 frames
-       if(game.bombPlaced == true && game.frames >= 0){
-           console.log(game.frames)
+       if(game.bombPlaced == true && game.frames >= 0 || game.explosion){
             game.frames++
             if(game.frames === 45){
+                game.bomb.explode(context)
                 game.bombPlaced = false
+                game.explosion = true
+            } else if(game.frames === 55){
+                game.explosion = false
                 game.frames = 0
             }
        }
