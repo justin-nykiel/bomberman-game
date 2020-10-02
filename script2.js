@@ -31,7 +31,7 @@ let goLeft = true
 
 
 
-let fps, fpsInterval, startTime, now, then, elapsed
+let  fpsInterval, startTime, now, then, elapsed
 function startAnimating(fps){
     fpsInterval = 1000/fps
     then = Date.now()
@@ -60,6 +60,7 @@ function animate(){
             } else if(game.frames === 55){
                 game.explosion = false
                 game.frames = 0
+                game.bomb.frameX = 0
             }
        }
         game.update(context)

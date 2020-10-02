@@ -4,6 +4,7 @@ import Controls from '/controls.js'
 import Player from '/player.js'
 import Brick from '/bricks.js'
 import Bomb from '/bomb.js'
+import {levelBuilder, level1} from '/levels.js'
 
 export default class Game {
     constructor(gameWidth, gameHeight, context) {
@@ -20,23 +21,24 @@ export default class Game {
         new Controls(this.player, this)
         
         //creating all the bricks to be put on map
-        let bricks = [];
-        for(let c = 0; c < 8; c++){
-            bricks[c] = []
-            for(let r = 0; r < 5; r++) {
-                bricks[c][r] = new Brick(this, 50 + c * 100, r * 100 + 50);
-            }
-        }
+        // let bricks = [];
+        // for(let c = 0; c < 8; c++){
+        //     bricks[c] = []
+        //     for(let r = 0; r < 5; r++) {
+        //         bricks[c][r] = new Brick(this, 50 + c * 100, r * 100 + 50);
+        //     }
+        // }
+        let bricks = levelBuilder(this, level1)
         //flattens 2d array of brick objexts to 1d array
         let flatBricks = [].concat.apply([],bricks)
         this.brick = flatBricks
         this.gameObjects = [this.player, ...flatBricks]
     }
     update(){
-        this.player.updateMovement()
+        this.player.updateMovement(this, level1)
         this.player.handlePlayerFrame()
         if(this.explosion){
-            this.bomb.handleExplosionFrame()
+            this.bomb.handleExplosionFrame(this, level1)
         }
     }
     draw(context){
