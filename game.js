@@ -36,7 +36,7 @@ export default class Game {
     update(){
         this.player.updateMovement(this, level1)
         this.player.handlePlayerFrame()
-        if(this.explosion){
+        if(this.bomb.exploding){
             this.bomb.handleExplosionFrame(this, level1)
         }
         this.baddie.updateMovement()
@@ -65,7 +65,7 @@ export default class Game {
             context.fillText('YOU WIN', this.gameWidth/2, this.gameHeight/2)
         }else if(this.bombPlaced){
             this.bomb.updateDrawing(context)
-        } else if(this.explosion){
+        } else if(this.bomb.exploding){
             this.bomb.explode(context)
         }
         context.font = '14px arial'

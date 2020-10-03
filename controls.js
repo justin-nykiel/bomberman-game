@@ -15,8 +15,8 @@ export default class Controls {
                     player.moveUp()
                     break
                 case 32:
-                    //can only place a bomb if no bomb currently on the board
-                    while(!game.bombPlaced){
+                    //can only place a bomb if no bomb currently on the board, or exploding
+                    while(!game.bombPlaced && !game.bomb.exploding){
                         game.bomb.x = game.player.x
                         game.bomb.y = game.player.y
                         game.bombPlaced = true

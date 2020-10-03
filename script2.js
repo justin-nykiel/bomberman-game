@@ -31,17 +31,18 @@ function animate(){
         then = now - (elapsed % fpsInterval)
         context.clearRect(0,0, canvas.width, canvas.height)
         
-        //counts how many frames have passed since bomb placed, stops repainting bomb after certain time frame
-       if(game.bombPlaced == true && game.frames >= 0 || game.explosion){
+        //counts how many frames have passed since bomb placed, stops repainting bomb 
+       if(game.bombPlaced == true && game.frames >= 0 || game.bomb.exploding){
             game.frames++
             if(game.frames === 45){
                 game.bomb.explode(context)
                 game.bombPlaced = false
-                game.explosion = true
-            } else if(game.frames === 55){
-                game.explosion = false
+                game.bomb.exploding = true
+            } else if(game.frames > 55){
+                game.bomb.exploding = false
                 game.frames = 0
                 game.bomb.frameX = 0
+                console.log("REE")
             }
        }
        

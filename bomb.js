@@ -8,6 +8,7 @@ export default class Bomb {
         this.height = 40
         this.explosion = document.getElementById('explosion')
         this.frameX = 0
+        this.exploding = false
     }
     //repaints the drawing of the bomb
     updateDrawing(context){
@@ -40,7 +41,7 @@ export default class Bomb {
     }
     //updates the frames of the explosion as well as checks if explosion is touching a brick, player or baddie
     handleExplosionFrame(){
-        if (this.frameX < 9 && this.game.explosion === true){
+        if (this.frameX < 9 && this.exploding === true){
             this.frameX++
         }
       
@@ -71,11 +72,12 @@ export default class Bomb {
             }
         }
         //checks if bomb explosion has collided with baddie, if so baddie is ded
-        if(this.arrayLocation === this.game.baddie.arrayLocation || this.arrayLocation + 1 === this.game.baddie.arrayLocation || this.arrayLocation + 17 === this.game.baddie.arrayLocation || this.arrayLocation -17 === this.game.baddie.arrayLocation){
+
+        if(this.arrayLocation === this.game.baddie.arrayLocation || this.arrayLocation + 1 === this.game.baddie.arrayLocation || this.arrayLocation + 17 === this.game.baddie.arrayLocation || this.arrayLocation -17 === this.game.baddie.arrayLocation && this.exploding){
             this.game.baddie.ded = true
         }
         //checks if bomb explosion has collided with player, if so, player is ded
-        if(this.arrayLocation === this.game.player.arrayLocation || this.arrayLocation === this.game.player.arrayLocation + 1 || this.arrayLocation === this.game.player.arrayLocation -1 || this.arrayLocation === this.game.player.arrayLocation + 17 || this.arrayLocation === this.game.player.arrayLocation -17){
+        if(this.arrayLocation === this.game.player.arrayLocation || this.arrayLocation === this.game.player.arrayLocation + 1 || this.arrayLocation === this.game.player.arrayLocation -1 || this.arrayLocation === this.game.player.arrayLocation + 17 || this.arrayLocation === this.game.player.arrayLocation -17 && this.exploding){
             this.game.player.ded = true
         }
     }
