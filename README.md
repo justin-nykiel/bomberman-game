@@ -5,11 +5,14 @@ I used a 2d array to reperesent the gameboard as a grid to keep track of blocks.
 
 ## Rules:
 Attempt to navigate Ironman to the corner of the map marked "Finish"
+
 In order to finish you must first defeat all enemies on the mao
+
 Watch out, Ironman will die if he runs into an enemy or is too close to his own bomb
 
 ## Controls:
 Use the arrow keys to move in their corresponding directions
+
 Use the space bar to place a bomb
 
 ## Play Game:
