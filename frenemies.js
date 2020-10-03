@@ -14,11 +14,13 @@ export default class Baddie {
         this.ded = false
         // from https://untamed.wild-refuge.net/rmxpresources.php?characters creator: sithjester
     }
+    //draws the baddie, called in game.draw, as long as baddie is not ded
     updateDrawing(context) {
         if(!this.ded){
             context.drawImage(this.img, this.width * this.frameX, this.height * this.frameY, this.width, this.height, this.x, this.y, 50, 50)
         }
     }
+    //updates which frame to use for painting in order to animate
     handlePlayerFrame(){
         if(this.speedY < 0){
             this.frameY = 3
@@ -32,14 +34,14 @@ export default class Baddie {
         }
     }
     
-    
+    //updates location for baddie to be drawn based on speed and direction
     updateMovement(){
         if(this.y < 1){
             this.speedY += this.maxSpeed
         }else if(this.y > 500){
             this.speedY -= this.maxSpeed
         } 
-
+        //collision detection, if hit a block, turn around
         if(this.x % 50===0 && this.y % 50 === 0){
             this.arrayLocation = (this.x/50 + this.y/50) + this.y/50 * 16
         }

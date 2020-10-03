@@ -9,6 +9,7 @@ export default class Bomb {
         this.explosion = document.getElementById('explosion')
         this.frameX = 0
     }
+    //repaints the drawing of the bomb
     updateDrawing(context){
         context.drawImage(
             this.image,
@@ -19,11 +20,13 @@ export default class Bomb {
         )
 
     }
+    //repaints the drawing of the explosion on the canvas
     explode(context){
         this.explosionW = 100
         this.explosionH = 99
         context.drawImage(this.explosion, this.explosionW * this.frameX, 0, this.explosionW, this.explosionH, this.x - 20, this.y - 20, this.explosionW, this.explosionH)
     }
+    //updates the frames of the explosion as well as checks if explosion is touching a brick, player or baddie
     handleExplosionFrame(){
         if (this.frameX < 9 && this.game.explosion === true){
             this.frameX++
@@ -55,11 +58,11 @@ export default class Bomb {
                 }
             }
         }
-        //collision with baddie
+        //checks if bomb explosion has collided with baddie, if so baddie is ded
         if(this.arrayLocation === this.game.baddie.arrayLocation || this.arrayLocation + 1 === this.game.baddie.arrayLocation || this.arrayLocation + 17 === this.game.baddie.arrayLocation || this.arrayLocation -17 === this.game.baddie.arrayLocation){
             this.game.baddie.ded = true
         }
-        //collision of bomb with player
+        //checks if bomb explosion has collided with player, if so, player is ded
         if(this.arrayLocation === this.game.player.arrayLocation || this.arrayLocation === this.game.player.arrayLocation + 1 || this.arrayLocation === this.game.player.arrayLocation -1 || this.arrayLocation === this.game.player.arrayLocation + 17 || this.arrayLocation === this.game.player.arrayLocation -17){
             this.game.player.ded = true
         }

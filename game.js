@@ -19,7 +19,7 @@ export default class Game {
         this.win = false
         
     }
-    
+    //initializes the game objects for start of game
     start(){
         this.player = new Player(this)
         this.bomb = new Bomb(this)
@@ -32,6 +32,7 @@ export default class Game {
         this.brick = flatBricks
         this.gameObjects = [this.player, ...flatBricks, this.baddie]
     }
+    //updates all of the game objects properities 
     update(){
         this.player.updateMovement(this, level1)
         this.player.handlePlayerFrame()
@@ -41,6 +42,7 @@ export default class Game {
         this.baddie.updateMovement()
         this.baddie.handlePlayerFrame()
     }
+    //updates the entire game board and all the game objects by repainting the board every frame
     draw(context){
         //this.player.drawSprite(bomberman, this.player.width * this.player.frameX, this.player.height * this.player.frameY, this.player.width, this.player.height, this.player.x, this.player.y, this.player.width, this.player.height, context)
             

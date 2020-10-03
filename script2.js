@@ -13,6 +13,7 @@ let keys = []
 canvas.width = 850
 canvas.height = 550
 
+//sets fps, so that game loop only updates a certain amount of times per second
 let  fpsInterval, now, then, elapsed
 function startAnimating(fps){
     fpsInterval = 1000/fps
@@ -21,8 +22,7 @@ function startAnimating(fps){
 }
 let game = new Game(GAME_WIDTH, GAME_HEIGHT, context)
 game.start()
-//Loop of the game
-
+//Loop of the game, updates if a gram has passed
 function animate(){
     requestAnimationFrame(animate)
     now = Date.now()
@@ -31,7 +31,7 @@ function animate(){
         then = now - (elapsed % fpsInterval)
         context.clearRect(0,0, canvas.width, canvas.height)
         
-        //counts how many frames have passed since bomb placed, gets rid of bomb after 45 frames
+        //counts how many frames have passed since bomb placed, stops repainting bomb after certain time frame
        if(game.bombPlaced == true && game.frames >= 0 || game.explosion){
             game.frames++
             if(game.frames === 45){

@@ -16,9 +16,11 @@ export default class Player {
         this.ded = false
         // from https://untamed.wild-refuge.net/rmxpresources.php?characters creator: sithjester
     }
+    //repaints the player object, is called in the game.draw
     updateDrawing(context) {
         context.drawImage(this.img, this.width * this.frameX, this.height * this.frameY, this.width, this.height, this.x, this.y, 50, 50)
     }
+    //updates the frame properties of the player so when paintinng will change sprite for animation
     handlePlayerFrame(){
         if (this.frameX < 3 && this.moving === true){
             this.frameX++
@@ -26,6 +28,7 @@ export default class Player {
             this.frameX = 0
         }
     }
+    //move functions called on keydown of the arrow keys, moves player in that direction
     moveDown(){
         this.speedY =  this.maxSpeed
         this.frameY = 0
@@ -58,28 +61,7 @@ export default class Player {
         this.speedY = 0
     }
     updateMovement(){
-        // this.upperRight = {x:this.x + this.width, y: this.y}
-        // this.upperLeft = {x:this.x, y:this.y}
-        // this.bottomRight = {x:this.x + this.width, y: this.y + this.height}
-        // this.bottomLeft = {x: this.x, y: this.y + this.height}
-        // for(let i = 0; i < this.game.brick.length; i++){
-        //     if(this.upperRight.x > this.game.brick[i].x && this.upperRight.y > this.game.brick[i].y -5 && this.upperRight.y < this.game.brick[i].y + this.game.brick[i].height && this.game.brick[i].status){
-        //         this.stopX()
-        //         break
-        //     }else if(this.upperRight.y < this.game.brick[i].y + this.game.brick[i].height && this.upperRight.x > this.game.brick[i].x + 5 && this.upperRight.x < this.game.brick[i].x + this.game.brick[i].width && this.game.brick[i].status){
-        //         this.stopY()
-        //         break
-        //     }else if(this.bottomLeft.x < this.game.brick[i].x + this.game.brick[i].width && this.bottomLeft.y > this.game.brick[i].y + 5 && this.bottomLeft.y < this.game.brick[i].y + this.game.brick[i].height && this.game.brick[i].status){
-        //         this.stopX()
-        //         break
-        //     }else if(this.bottomLeft.y > this.game.brick[i].y && this.x > this.game.brick[i].x && this.x < this.game.brick[i].x + this.game.brick[i].width - 5 && this.game.brick[i].status){
-        //         this.stopY()
-        //         break
-        //     }
-        // }
-
-        //re-did collision detection, give player an array location and compare to indices adjacent to it
-        //
+        //checks for edges of the screen
         if(this.x < 0){
             this.x = 0
         } else if(this.y < 0){
@@ -94,6 +76,7 @@ export default class Player {
             this.y = this.game.gameHeight - 50
             
         }
+        //collision detection, give player an array location and compare to indices adjacent to it, if brick there, can't move there
         if(this.x % 50===0 && this.y % 50 === 0){
             this.arrayLocation = (this.x/50 + this.y/50) + this.y/50 * 16
         }
@@ -126,16 +109,10 @@ export default class Player {
                 this.ded = true
             }
         }
-        
-        
-        
-
-
-
-        
+        //updates player location based on where moving 
         this.x += this.speedX
         this.y += this.speedY
-        console.log(this.x, this.y)
+
         //make you get to corner easier
         if(this.speedX === 0){
             if((this.x + 10) % 50 === 0){

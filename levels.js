@@ -1,5 +1,6 @@
 import Brick from './bricks.js'
 
+//adds bricks to a 2d arry to represent the gamboard based on level loaded
 export function levelBuilder(game, level) {
     let bricks = []
     level.forEach((row, rowIndex) => {
