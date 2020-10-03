@@ -13,6 +13,7 @@ export default class Player {
         this.img = document.getElementById('bomberman')
         this.game = game
         this.arrayLocation = 17
+        this.ded = false
         // from https://untamed.wild-refuge.net/rmxpresources.php?characters creator: sithjester
     }
     updateDrawing(context) {
@@ -83,10 +84,10 @@ export default class Player {
             this.x = 0
         } else if(this.y < 0){
             this.y = 0
-        } else if(this.x > this.game.gameWidth - 41 && this.y < 25){
-            console.log("winner")
+        } else if(this.x > this.game.gameWidth - 41 && this.y < 25 && this.game.baddie.ded){
+            this.game.win = true
             
-        }else if(this.x > this.game.gameWidth - 50 && this.y > 25){
+        }else if(this.x > this.game.gameWidth - 50){
             this.x = this.game.gameWidth - 50
             
         } else if(this.y > this.game.gameHeight - 50){
@@ -119,14 +120,20 @@ export default class Player {
                 }
             }
         }
+        if(this.x < this.game.baddie.x + this.game.baddie.width && this.x > this.game.baddie.x && this.y < this.game.baddie.y + this.game.baddie.height && this.y > this.game.baddie.y || this.x + this.width > this.game.baddie.x && this.x + this.width < this.game.baddie.x + this.game.baddie.width && this.y < this.game.baddie.y + this.game.baddie.height && this.y > this.game.baddie.y || 
+            this.x < this.game.baddie.x + this.game.baddie.width && this.x > this.game.baddie.x && this.y + this.height > this.game.baddie.y  && this.y + this.height < this.game.baddie.y + this.game.baddie.height || this.x + this.width > this.game.baddie.x && this.x + this.width < this.game.baddie.x + this.game.baddie.width && this.y + this.height > this.game.baddie.y && this.y + this.height < this.game.baddie.y + this.game.baddie.height){
+            this.ded = true
+        }
         
         
         
         
-        
+
+
+
         
         this.x += this.speedX
         this.y += this.speedY
-        console.log(this.x, this.y)
+        
     }
 }

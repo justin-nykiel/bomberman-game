@@ -31,11 +31,10 @@ let goLeft = true
 
 
 
-let  fpsInterval, startTime, now, then, elapsed
+let  fpsInterval, now, then, elapsed
 function startAnimating(fps){
     fpsInterval = 1000/fps
     then = Date.now()
-    startTime = then
     animate()
 }
 let game = new Game(GAME_WIDTH, GAME_HEIGHT, context)
@@ -63,9 +62,10 @@ function animate(){
                 game.bomb.frameX = 0
             }
        }
+       
         game.update(context)
         game.draw(context)
-        //collisionDetection()
+        
     }
     
 }
