@@ -13,24 +13,6 @@ let keys = []
 canvas.width = 850
 canvas.height = 550
 
-//image used for playable character
-// const bomberman = new Image()
-// bomberman.src = 'ironman.png'
-// //image used for 
-// const stoneBrick = new Image()
-// stoneBrick.src = 'stoneBlock.png'
-
-
-
-let goRight = true
-let goDown = true
-let goUp = true
-let goLeft = true
-
-
-
-
-
 let  fpsInterval, now, then, elapsed
 function startAnimating(fps){
     fpsInterval = 1000/fps
@@ -48,7 +30,7 @@ function animate(){
     if(elapsed > fpsInterval){
         then = now - (elapsed % fpsInterval)
         context.clearRect(0,0, canvas.width, canvas.height)
-       
+        
         //counts how many frames have passed since bomb placed, gets rid of bomb after 45 frames
        if(game.bombPlaced == true && game.frames >= 0 || game.explosion){
             game.frames++
@@ -65,6 +47,7 @@ function animate(){
        
         game.update(context)
         game.draw(context)
+        
         
     }
     

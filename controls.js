@@ -26,16 +26,24 @@ export default class Controls {
         document.addEventListener('keyup',(e)=>{
             switch(e.keyCode){
                 case 37:
-                    player.stop()
+                    
+                        player.stop()
+                   
                     break
                 case 39:
-                    player.stop()
+                    
+                        player.stop()
+                    
                     break
                 case 40:
-                    player.stop()
+                    
+                        player.stop()
+                    
                     break
                 case 38:
-                    player.stop()
+                    
+                        player.stop()
+                    
                     break
             }
         })

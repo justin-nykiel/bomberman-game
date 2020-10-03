@@ -135,6 +135,21 @@ export default class Player {
         
         this.x += this.speedX
         this.y += this.speedY
-        
+        console.log(this.x, this.y)
+        //make you get to corner easier
+        if(this.speedX === 0){
+            if((this.x + 10) % 50 === 0){
+                this.x += 10
+            }else if((this.x - 10) % 50 === 0){
+                this.x -= 10
+            }
+        }
+        if(this.speedY === 0){
+            if((this.y + 10) % 50 === 0){
+                this.y += 10
+            }else if((this.y -10) % 50 === 0){
+                this.y -= 10
+            }
+        }
     }
 }
