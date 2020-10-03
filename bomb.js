@@ -48,7 +48,6 @@ export default class Bomb {
         if(this.x % 50===0 && this.y % 50 === 0){
             this.arrayLocation = (this.x/50 + this.y/50) + this.y/50 * 16
         }
-        
         for(let i = 0; i < this.game.brick.length; i++){
             if(this.game.brick[this.arrayLocation + 1]){
                 if(this.game.brick[this.arrayLocation + 1].breakable){
@@ -79,6 +78,8 @@ export default class Bomb {
         //checks if bomb explosion has collided with player, if so, player is ded
         if(this.arrayLocation === this.game.player.arrayLocation || this.arrayLocation === this.game.player.arrayLocation + 1 || this.arrayLocation === this.game.player.arrayLocation -1 || this.arrayLocation === this.game.player.arrayLocation + 17 || this.arrayLocation === this.game.player.arrayLocation -17 && this.exploding){
             this.game.player.ded = true
+            console.log(this.arrayLocation, this.game.player.arrayLocation)
+            console.log("reee")
         }
     }
 }

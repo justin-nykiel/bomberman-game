@@ -42,7 +42,6 @@ function animate(){
                 game.bomb.exploding = false
                 game.frames = 0
                 game.bomb.frameX = 0
-                console.log("REE")
             }
        }
        
