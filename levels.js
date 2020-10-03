@@ -19,7 +19,7 @@ export function levelBuilder(game, level) {
         })
 
     })
-    console.log(bricks)
+    
     return bricks
 }
 
