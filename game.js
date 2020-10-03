@@ -65,10 +65,10 @@ export default class Game {
             context.fillText('YOU WIN', this.gameWidth/2, this.gameHeight/2)
         }else if(this.bombPlaced){
             this.bomb.updateDrawing(context)
-            console.log(this.bomb.x)
+           
         } else if(this.bomb.exploding){
             this.bomb.explode(context)
-            console.log(this.bomb.x)
+         
         }
         context.font = '14px arial'
         context.fillStyle = 'white'

@@ -20,7 +20,6 @@ export default class Controls {
                     while(!game.bombPlaced && !game.bomb.exploding){
                         game.bomb.placeBomb()
                         game.bombPlaced = true
-                        console.log('placed')
                     }
                     
             }

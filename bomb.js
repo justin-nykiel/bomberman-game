@@ -50,8 +50,7 @@ export default class Bomb {
             this.frameX++
         }
       
-        
-        console.log("bomb", this.arrayLocation)
+
         for(let i = 0; i < this.game.brick.length; i++){
             if(this.game.brick[this.arrayLocation + 1]){
                 if(this.game.brick[this.arrayLocation + 1].breakable){
