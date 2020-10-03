@@ -25,7 +25,7 @@ export default class Baddie {
         }else{
             this.frameY = 0
         }
-        if (this.frameX < 3 && this.moving === true){
+        if (this.frameX < 3){
             this.frameX++
         } else {
             this.frameX = 0
