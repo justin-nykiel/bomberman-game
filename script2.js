@@ -1,7 +1,7 @@
-import Controls from '/controls.js'
-import Player from '/player.js'
-import Brick from '/bricks.js'
-import Game from '/game.js'
+import Controls from './controls.js'
+import Player from './player.js'
+import Brick from './bricks.js'
+import Game from './game.js'
 
 
 

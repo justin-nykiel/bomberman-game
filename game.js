@@ -1,11 +1,10 @@
 
 
-import Controls from '/controls.js'
-import Player from '/player.js'
-import Brick from '/bricks.js'
-import Bomb from '/bomb.js'
-import Baddie from '/frenemies.js'
-import {levelBuilder, level1} from '/levels.js'
+import Controls from './controls.js'
+import Player from './player.js'
+import Bomb from './bomb.js'
+import Baddie from './frenemies.js'
+import {levelBuilder, level1} from './levels.js'
 
 
 

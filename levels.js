@@ -1,4 +1,4 @@
-import Brick from '/bricks.js'
+import Brick from './bricks.js'
 
 export function levelBuilder(game, level) {
     let bricks = []
