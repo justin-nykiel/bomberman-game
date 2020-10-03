@@ -11,6 +11,18 @@ export default class Bomb {
     }
     //repaints the drawing of the bomb
     updateDrawing(context){
+            //makes sure bomb is in a grid space
+            if((this.x + 10) % 50 === 0){
+                this.x += 10
+            }else if((this.x - 10) % 50 === 0){
+                this.x -= 10
+            }
+            if((this.y + 10) % 50 === 0){
+                this.y += 10
+            }else if((this.y -10) % 50 === 0){
+                this.y -= 10
+            }
+        
         context.drawImage(
             this.image,
             this.x,

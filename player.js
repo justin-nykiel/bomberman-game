@@ -103,6 +103,7 @@ export default class Player {
                 }
             }
         }
+        //checks if player collides with a baddie, makes player ded if so
         if(!this.game.baddie.ded){
             if(this.x < this.game.baddie.x + this.game.baddie.width && this.x > this.game.baddie.x && this.y < this.game.baddie.y + this.game.baddie.height && this.y > this.game.baddie.y || this.x + this.width > this.game.baddie.x && this.x + this.width < this.game.baddie.x + this.game.baddie.width && this.y < this.game.baddie.y + this.game.baddie.height && this.y > this.game.baddie.y || 
                 this.x < this.game.baddie.x + this.game.baddie.width && this.x > this.game.baddie.x && this.y + this.height > this.game.baddie.y  && this.y + this.height < this.game.baddie.y + this.game.baddie.height || this.x + this.width > this.game.baddie.x && this.x + this.width < this.game.baddie.x + this.game.baddie.width && this.y + this.height > this.game.baddie.y && this.y + this.height < this.game.baddie.y + this.game.baddie.height){

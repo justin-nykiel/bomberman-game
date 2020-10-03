@@ -45,7 +45,7 @@ export default class Baddie {
         if(this.x % 50===0 && this.y % 50 === 0){
             this.arrayLocation = (this.x/50 + this.y/50) + this.y/50 * 16
         }
-        
+        //only checks above and below as baddie only goes up or down
         for(let i = 0; i < this.game.brick.length; i++){
             if(this.game.brick[this.arrayLocation + 17]){
                 if(this.game.brick[this.arrayLocation + 17].status && this.speedY > 0 || this.x % 50 !== 0){
