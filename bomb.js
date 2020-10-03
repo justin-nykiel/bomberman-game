@@ -1,14 +1,19 @@
 export default class Bomb {
     constructor(game){
         this.game = game
-        this.x = this.game.player.x
-        this.y = this.game.player.y + this.game.player.height/2
+        
         this.image = document.getElementById('bomb')
         this.width = 40
         this.height = 40
         this.explosion = document.getElementById('explosion')
         this.frameX = 0
         this.exploding = false
+    }
+    placeBomb(){
+        this.x = this.game.player.x
+        this.y = this.game.player.y 
+        this.arrayLocation = Math.round((this.x/50 + this.y/50) + this.y/50 * 16)
+        
     }
     //repaints the drawing of the bomb
     updateDrawing(context){
@@ -23,7 +28,7 @@ export default class Bomb {
             }else if((this.y -10) % 50 === 0){
                 this.y -= 10
             }
-        
+            
         context.drawImage(
             this.image,
             this.x,
@@ -45,9 +50,8 @@ export default class Bomb {
             this.frameX++
         }
       
-        if(this.x % 50===0 && this.y % 50 === 0){
-            this.arrayLocation = (this.x/50 + this.y/50) + this.y/50 * 16
-        }
+        
+        console.log("bomb", this.arrayLocation)
         for(let i = 0; i < this.game.brick.length; i++){
             if(this.game.brick[this.arrayLocation + 1]){
                 if(this.game.brick[this.arrayLocation + 1].breakable){
@@ -78,8 +82,6 @@ export default class Bomb {
         //checks if bomb explosion has collided with player, if so, player is ded
         if(this.arrayLocation === this.game.player.arrayLocation || this.arrayLocation === this.game.player.arrayLocation + 1 || this.arrayLocation === this.game.player.arrayLocation -1 || this.arrayLocation === this.game.player.arrayLocation + 17 || this.arrayLocation === this.game.player.arrayLocation -17 && this.exploding){
             this.game.player.ded = true
-            console.log(this.arrayLocation, this.game.player.arrayLocation)
-            console.log("reee")
         }
     }
 }

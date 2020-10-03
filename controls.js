@@ -14,14 +14,15 @@ export default class Controls {
                 case 38:
                     player.moveUp()
                     break
-                case 32:
+            }
+            if(e.keyCode === 32){
                     //can only place a bomb if no bomb currently on the board, or exploding
                     while(!game.bombPlaced && !game.bomb.exploding){
-                        game.bomb.x = game.player.x
-                        game.bomb.y = game.player.y
+                        game.bomb.placeBomb()
                         game.bombPlaced = true
+                        console.log('placed')
                     }
-                    break
+                    
             }
         })
         document.addEventListener('keyup',(e)=>{
