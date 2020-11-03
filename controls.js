@@ -21,7 +21,6 @@ export default class Controls {
                         game.bomb.placeBomb()
                         game.bombPlaced = true
                     }
-                    
             }
         })
         document.addEventListener('keyup',(e)=>{

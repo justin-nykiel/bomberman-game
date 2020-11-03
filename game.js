@@ -70,8 +70,10 @@ export default class Game {
             this.bomb.explode(context)
          
         }
+        
         context.font = '14px arial'
         context.fillStyle = 'white'
         context.fillText('Finish ->', 775, 25)
+    
     }
 }

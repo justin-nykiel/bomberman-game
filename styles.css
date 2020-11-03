@@ -11,3 +11,10 @@
 img {
     display: none;
 }
+canvas {
+    display: block;
+}
+
+button:focus {
+    outline: none;
+}

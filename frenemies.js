@@ -1,5 +1,5 @@
 export default class Baddie {
-    constructor(game, x = 0, y = 50, width = 50, height = 50, frameX = 0, frameY = 0, speed = 0, moving = false) {
+    constructor(game, x = 0, y = 50, arrayLocation =8, width = 50, height = 50, frameX = 0, frameY = 0) {
         this.x = x
         this.y = y
         this.width = width
@@ -10,7 +10,7 @@ export default class Baddie {
         this.maxSpeed = 5
         this.img = document.getElementById('baddie')
         this.game = game
-        this.arrayLocation = 8
+        this.arrayLocation = arrayLocation
         this.ded = false
         // from https://untamed.wild-refuge.net/rmxpresources.php?characters creator: sithjester
     }

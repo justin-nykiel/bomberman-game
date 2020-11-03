@@ -53,5 +53,17 @@ function animate(){
     
 }
 
-startAnimating(15)
+document.addEventListener('DOMContentLoaded', ()=>{
+    const restart = document.querySelector('#restart')
+    restart.addEventListener('click', (e)=>{
+        e.preventDefault()
+        //removes focus from button after click, so next round when bomb is placed, restart button is not clicked.
+        document.activeElement.blur()
+        game.player.ded = false
+        game.win = false
+        console.log('clicked')
+        game.start()
+    })
+})
 
+startAnimating(15)

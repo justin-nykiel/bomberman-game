@@ -12,7 +12,7 @@ export default class Bomb {
     placeBomb(){
         this.x = this.game.player.x
         this.y = this.game.player.y 
-        this.arrayLocation = Math.round((this.x/50 + this.y/50) + this.y/50 * 16)
+        this.arrayLocation = Math.floor((this.x/50 + this.y/50) + this.y/50 * 16)
         
     }
     //repaints the drawing of the bomb
