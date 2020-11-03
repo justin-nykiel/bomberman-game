@@ -1,7 +1,7 @@
 export default class Controls {
     constructor(player, game){
         document.addEventListener('keydown',(e)=>{
-            
+            if(game.gamestate == 1){
                 switch(e.keyCode){
                     case 37:
                         player.moveLeft()
@@ -21,10 +21,12 @@ export default class Controls {
                             game.bombPlaced = true
                         }
                         break
-                    case 27:
-                        game.pause()
-                        break
                 }
+            }            
+            if(e.keyCode == 27){
+                game.pause()
+            }
+                
             
         })
         document.addEventListener('keyup',(e)=>{
