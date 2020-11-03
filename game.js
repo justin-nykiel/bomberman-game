@@ -6,7 +6,11 @@ import Bomb from './bomb.js'
 import Baddie from './frenemies.js'
 import {levelBuilder, level1} from './levels.js'
 
-
+const GAMESTATE = {
+    PAUSED: 0,
+    PLAYING: 1,
+    MENU: 2
+}
 
 export default class Game {
     constructor(gameWidth, gameHeight, context) {
@@ -21,6 +25,7 @@ export default class Game {
     }
     //initializes the game objects for start of game
     start(){
+        this.gamestate = GAMESTATE.PLAYING
         this.player = new Player(this)
         this.bomb = new Bomb(this)
         new Controls(this.player, this)
@@ -34,6 +39,7 @@ export default class Game {
     }
     //updates all of the game objects properities 
     update(){
+        if(this.gamestate == GAMESTATE.PAUSED) return
         this.player.updateMovement(this, level1)
         this.player.handlePlayerFrame()
         if(this.bomb.exploding){
@@ -42,16 +48,15 @@ export default class Game {
         this.baddie.updateMovement()
         this.baddie.handlePlayerFrame()
         if(this.bombPlaced){
-            this.bomb.updateDrawing(this.context)
-           
-        } else if(this.bomb.exploding){
+            this.gameObjects.push(this.bomb)
+        } 
+        if(this.bomb.exploding){
             this.bomb.explode(this.context)
          
         }
     }
     //updates the entire game board and all the game objects by repainting the board every frame
     draw(context){
-        //this.player.drawSprite(bomberman, this.player.width * this.player.frameX, this.player.height * this.player.frameY, this.player.width, this.player.height, this.player.x, this.player.y, this.player.width, this.player.height, context)
             
         this.gameObjects.forEach(objects => objects.updateDrawing(context))
         if(this.player.ded){
@@ -76,5 +81,12 @@ export default class Game {
         context.fillStyle = 'white'
         context.fillText('Finish ->', 775, 25)
     
+    }
+    pause(){
+        if(this.gamestate == GAMESTATE.PAUSED){
+            this.gamestate = GAMESTATE.PLAYING
+        } else {
+            this.gamestate = GAMESTATE.PAUSED
+        }
     }
 }
