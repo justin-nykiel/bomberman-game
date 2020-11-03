@@ -21,14 +21,19 @@ export default class Game {
         this.frames = 0
         this.explosion = false
         this.win = false
+        this.controls = false
         
     }
     //initializes the game objects for start of game
     start(){
+        console.log("new game")
         this.gamestate = GAMESTATE.PLAYING
         this.player = new Player(this)
         this.bomb = new Bomb(this)
-        new Controls(this.player, this)
+        // if(!this.controls){
+        //     new Controls(this.player, this)
+        //     this.controls = true
+        // }
         this.baddie = new Baddie(this, 400, 0)
     
         let bricks = levelBuilder(this, level1)
@@ -108,5 +113,6 @@ export default class Game {
         } else {
             this.gamestate = GAMESTATE.PAUSED
         }
+        console.log(this.gamestate)
     }
 }
