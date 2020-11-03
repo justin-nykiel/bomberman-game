@@ -24,6 +24,7 @@ export default class Controls {
                 }
             }            
             if(e.keyCode == 27){
+                console.log('paused')
                 game.pause()
             }
                 

@@ -20,9 +20,13 @@ function startAnimating(fps){
     then = Date.now()
     animate()
 }
-let game = new Game(GAME_WIDTH, GAME_HEIGHT, context)
-game.start()
-new Controls(game.player, game)
+let game
+function newGame() {
+    game = new Game(GAME_WIDTH, GAME_HEIGHT, context)
+    game.start()
+}
+newGame()
+
 //Loop of the game, updates if a gram has passed
 function animate(){
     requestAnimationFrame(animate)
@@ -50,7 +54,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         document.activeElement.blur()
         game.player.ded = false
         game.win = false
-        game.start()
+        newGame()
     })
 })
 

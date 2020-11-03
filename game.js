@@ -9,7 +9,8 @@ import {levelBuilder, level1} from './levels.js'
 const GAMESTATE = {
     PAUSED: 0,
     PLAYING: 1,
-    MENU: 2
+    MENU: 2,
+    LOST: 3
 }
 
 export default class Game {
@@ -30,17 +31,15 @@ export default class Game {
         this.gamestate = GAMESTATE.PLAYING
         this.player = new Player(this)
         this.bomb = new Bomb(this)
-        // if(!this.controls){
-        //     new Controls(this.player, this)
-        //     this.controls = true
-        // }
+       
         this.baddie = new Baddie(this, 400, 0)
-    
+        
         let bricks = levelBuilder(this, level1)
         //flattens 2d array of brick objexts to 1d array
         let flatBricks = [].concat.apply([],bricks)
         this.brick = flatBricks
         this.gameObjects = [this.player, ...flatBricks, this.baddie]
+        this.controls = new Controls(this.player, this)
     }
     //updates all of the game objects properities 
     update(){
@@ -102,9 +101,11 @@ export default class Game {
          
         }
         
-        context.font = '14px arial'
-        context.fillStyle = 'white'
-        context.fillText('Finish ->', 775, 25)
+        if(!this.player.ded && !this.win){
+            context.font = '14px arial'
+            context.fillStyle = 'white'
+            context.fillText('Finish ->', 775, 25)
+        } 
     
     }
     pause(){
@@ -113,6 +114,5 @@ export default class Game {
         } else {
             this.gamestate = GAMESTATE.PAUSED
         }
-        console.log(this.gamestate)
     }
 }
