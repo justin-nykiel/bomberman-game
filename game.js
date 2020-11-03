@@ -41,6 +41,13 @@ export default class Game {
         }
         this.baddie.updateMovement()
         this.baddie.handlePlayerFrame()
+        if(this.bombPlaced){
+            this.bomb.updateDrawing(this.context)
+           
+        } else if(this.bomb.exploding){
+            this.bomb.explode(this.context)
+         
+        }
     }
     //updates the entire game board and all the game objects by repainting the board every frame
     draw(context){
@@ -63,12 +70,6 @@ export default class Game {
             context.fillStyle = 'white'
             context.textAlign = 'center'
             context.fillText('YOU WIN', this.gameWidth/2, this.gameHeight/2)
-        }else if(this.bombPlaced){
-            this.bomb.updateDrawing(context)
-           
-        } else if(this.bomb.exploding){
-            this.bomb.explode(context)
-         
         }
         
         context.font = '14px arial'
