@@ -18,3 +18,7 @@ canvas {
 button:focus {
     outline: none;
 }
+
+body {
+    background: gray;
+}
