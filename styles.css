@@ -22,3 +22,6 @@ button:focus {
 body {
     background: gray;
 }
+.game {
+    display: block;
+}
